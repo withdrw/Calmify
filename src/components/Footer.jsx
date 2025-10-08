@@ -12,8 +12,6 @@ const Footer = () => {
                     <div className="footer-links-container">
                         <a href="/about" className="footer-link">About Us</a>
                         <a href="/refund" className="footer-link">Refund Policy</a>
-                        <a href="/shop" className="footer-link">Shop</a>
-                        <a href="/products" className="footer-link">Products</a>
                         <a href="/terms" className="footer-link">Terms of Condition</a>
                     </div>
                     <div className="footer-social">
