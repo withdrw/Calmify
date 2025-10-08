@@ -10,9 +10,6 @@
 
 # production
 /build
-# ignore all files .css
-src/components/*.css
-
 # misc
 .DS_Store
 .env.local
