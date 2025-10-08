@@ -8,7 +8,6 @@ function App() {
     <div className="App">
       <Header />
       <Homepage />
-      <h1>Welcome to My Shop</h1>
       {/* ... other components ... */}
     </div>
   );
