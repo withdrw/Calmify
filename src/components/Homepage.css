@@ -150,12 +150,22 @@ body {
   40% { transform: translateX(-50%) translateY(-10px); }
   60% { transform: translateX(-50%) translateY(-5px); }
 }
+
+
+/* ============================= */
+/* 🔹 ALL PRODUCTS SECTION FIXED */
+/* ============================= */
+
 .all-products-fullpage {
   background: #f8f9fa;
   text-align: center;
   padding-top: 80px;
-  height: calc(100vh - 80px); 
+  height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
 .section-header {
   margin-bottom: 3rem;
 }
@@ -171,48 +181,91 @@ body {
   max-width: 500px;
   margin: 0 auto;
 }
+
+/* ============================= */
+/* 🔹 CAROUSEL CONTAINER */
+/* ============================= */
 .products-carousel {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0;
-  max-width: 800px;
+  margin: 2rem auto;
+  max-width: 1000px;
   width: 100%;
 }
+
 .products-scroll-container {
   width: 100%;
-  overflow: hidden;
+  overflow: visible; /* allow side slides to show */
+  position: relative;
   border-radius: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-  background: white;
+  background: transparent;
 }
+
+/* ============================= */
+/* 🔹 SCROLL / SLIDE LAYOUT */
+/* ============================= */
 .products-scroll {
   display: flex;
-  transition: transform 0.5s ease;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   height: 550px;
 }
+
+/* Default hidden state */
 .product-slide {
-  flex: 0 0 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 3rem;
-  background: white;
+  position: absolute;
+  width: 320px;
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: all 0.6s ease;
+  transform: scale(0.8);
+  filter: blur(4px);
+  pointer-events: none;
 }
+
+/* Center (active) product */
 .product-slide.active {
   opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  z-index: 3;
+  pointer-events: auto;
 }
+
+/* Left product */
+.product-slide.prev {
+  opacity: 0.6;
+  transform: translateX(-360px) scale(0.85);
+  z-index: 2;
+}
+
+/* Right product */
+.product-slide.next {
+  opacity: 0.6;
+  transform: translateX(360px) scale(0.85);
+  z-index: 2;
+}
+
+/* Hide everything else */
+.product-slide.hidden {
+  opacity: 0;
+  transform: scale(0.7);
+  z-index: 1;
+}
+
+/* ============================= */
+/* 🔹 PRODUCT CONTENT */
+/* ============================= */
 .product-slide .product-image {
-  width: 350px;
-  height: 350px;
-  margin-bottom: 2rem;
+  width: 300px;
+  height: 300px;
+  margin-bottom: 1.5rem;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: white;
 }
 .product-slide .product-image img {
   width: 100%;
@@ -223,33 +276,34 @@ body {
 .product-slide.active .product-image img {
   transform: scale(1.05);
 }
+
 .product-slide .product-info {
   text-align: center;
 }
 .product-slide .product-info h3 {
-  font-size: 1.8rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
   color: #333;
   font-weight: 600;
 }
 .product-slide .product-info .product-rating {
   color: #ffc107;
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 }
 .product-slide .product-info .product-price {
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #4a6cf7;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .view-options-btn {
   background: transparent;
   color: #4a6cf7;
   border: 2px solid #4a6cf7;
-  padding: 12px 30px;
+  padding: 10px 25px;
   border-radius: 25px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -268,8 +322,8 @@ body {
   transform: translateY(-50%);
   background: white;
   border: none;
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
   font-size: 1.8rem;
   font-weight: bold;
@@ -282,17 +336,14 @@ body {
   align-items: center;
   justify-content: center;
 }
-
 .carousel-btn:hover {
   background: #4a6cf7;
   color: white;
   transform: translateY(-50%) scale(1.1);
 }
-
 .carousel-prev {
   left: -80px;
 }
-
 .carousel-next {
   right: -80px;
 }
@@ -302,7 +353,6 @@ body {
   gap: 0.8rem;
   margin-top: 2.5rem;
 }
-
 .indicator {
   width: 14px;
   height: 14px;
@@ -312,12 +362,10 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
-
 .indicator.active {
   background: #4a6cf7;
   transform: scale(1.3);
 }
-
 .indicator:hover {
   background: #4a6cf7;
   transform: scale(1.2);

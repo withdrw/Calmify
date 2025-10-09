@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import './Homepage.css';
+import yogaImage from './images/yoga.png';
 
 const Homepage = () => {
   const [currentProductIndex, setCurrentProductIndex] = useState(0);
@@ -44,7 +45,7 @@ const Homepage = () => {
       name: 'Running Shoes',
       price: 89.99,
       rating: '★★☆',
-      image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+      image: 'https://media.discordapp.net/attachments/1421723469539967036/1422450792358613113/AJfQ9KQzPR9_R3YiL-dI4Fq_bk1lSMx5CP4IOZKU0sClJgm35zbJ4TMELUP8CtAMnVTcKoPgPi-5CWQcrsIAU_ACY6913XrplSkpKocV5sLeaXDGqwW9iVnOCKnXAUHsfCd4HVNRNvLgZTgGuugJxp9y8DXdLOgMVvXCUJjitRb7fv5i0pRULws1024.png?ex=68e7ecc8&is=68e69b48&hm=a75edf6a4210255cdc23c5ab415836724b915a69b958795d43e8968d3020fc5b&=&format=webp&quality=lossless'
     },
     {
       id: 5,
@@ -133,24 +134,37 @@ const Homepage = () => {
             </button>
             
             <div className="products-scroll-container" ref={scrollContainerRef}>
-              <div className="products-scroll">
-                {allProducts.map((product, index) => (
-                  <div 
-                    key={product.id} 
-                    className={`product-slide ${index === currentProductIndex ? 'active' : ''}`}
-                  >
-                    <div className="product-image">
-                      <img src={product.image} alt={product.name} />
-                    </div>
-                    <div className="product-info">
-                      <h3>{product.name}</h3>
-                      <div className="product-rating">{product.rating}</div>
-                      <div className="product-price">${product.price}</div>
-                      <button className="view-options-btn">View Options</button>
-                    </div>
-                  </div>
-                ))}
-              </div>
+<div className="products-scroll">
+  {allProducts.map((product, index) => {
+    const position =
+      index === currentProductIndex
+        ? "active"
+        : index === currentProductIndex - 1 || 
+          (currentProductIndex === 0 && index === allProducts.length - 1)
+        ? "prev"
+        : index === currentProductIndex + 1 || 
+          (currentProductIndex === allProducts.length - 1 && index === 0)
+        ? "next"
+        : "hidden";
+
+    return (
+      <div
+        key={product.id}
+        className={`product-slide ${position}`}
+      >
+        <div className="product-image">
+          <img src={product.image} alt={product.name} />
+        </div>
+        <div className="product-info">
+          <h3>{product.name}</h3>
+          <div className="product-rating">{product.rating}</div>
+          <div className="product-price">${product.price}</div>
+          <button className="view-options-btn">View Options</button>
+        </div>
+      </div>
+    );
+  })}
+</div>
             </div>
             <button className="carousel-btn carousel-next" onClick={nextProduct}>
               ›
